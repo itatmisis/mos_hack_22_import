@@ -22,3 +22,4 @@ doc/api/
 
 .__pycache__/
 .pyc
+*.pyc
