@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:moscow_city_hack_web/pages/catalog_page/left_bar/catalog_page_slider.dart';
 import 'package:moscow_city_hack_web/widgets/check_box_list/check_box_list.dart';
 import 'package:moscow_city_hack_web/widgets/choose_list.dart';
 

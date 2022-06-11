@@ -6,4 +6,5 @@ class Styles {
   static const Color backgroundGray = Color(0xFFEDEFF3);
   static const Color cardCallButton = Color(0xFFD8F7E6);
   static const Color cardSiteButton = Color(0xFFCBDBFF);
+  static const Color grayTextColor = Color(0xFF808D9A);
 }
