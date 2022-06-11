@@ -14,31 +14,30 @@ async def root():
 
 
 @app.get("/login/")
-async def login(login: str, password: str):
+async def login(email: str, password: str):
     db_worker = get_db()
 
-    is_registred, house_id = db_worker.get_user(login, password)
+    is_registred = db_worker.get_user(email, password)
 
-    result = {"registred": is_registred,
-              "is_disabled": db_worker.is_user_disabled(login, password) if is_registred else "false",
-              "home_id": house_id}
+    result = {"registred": is_registred}
     db_worker.close()
     return result
 
 
 @app.get("/register/")
-async def register(login: str, password: str):
+async def register(name: str, password: str, inn: str, company_name: str, country: str, company_type: str, email: str, position: str):
     db_worker = get_db()
-
-    is_registred = db_worker.is_user_registred(login)
+    print(123)
+    is_registred = db_worker.is_user_registred(email)
 
     if is_registred:
         result = {"registred": is_registred, "message": "User already registred"}
     else:
-        db_worker.register_user(login, password)
-        result = {"registred": is_registred, "message": "User registered"}
+        db_worker.register_user(name, password, inn, company_name, country, company_type, email, position)
+        result = {"registred": is_registred, "message": "User registered", "email" : email}
     db_worker.close()
     return result
+
 
 @app.get("/feedback/")
 async def read_coords(user_id: int, text: str):
