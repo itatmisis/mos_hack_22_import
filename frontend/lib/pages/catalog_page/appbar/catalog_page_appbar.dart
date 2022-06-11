@@ -13,71 +13,54 @@ class CatalogPageAppbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          height: 70,
-          color: Colors.white,
-          child: Stack(
-            children: [
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Row(
-                  children: [
-                    SizedBox(
-                      height: 50,
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          SizedBox(width: 50,),
-                          Image.asset('assets/deptrans.png'),
-                          Image.asset('assets/mosprom.png'),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Align(
-                alignment: Alignment.center,
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Flexible(
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(vertical: 12),
-                        child: Container(
-                          width: 160,
+    return Container(
+      color: Colors.white,
+      child: Stack(
+        children: [
+          Align(
+            alignment: Alignment.center,
+            child:  Padding(
+              padding: EdgeInsets.symmetric(vertical: 6),
+              child: Row(
+                children: [
+                  Expanded(
+                      flex: 2,
+                      child: SizedBox()
+                  ),
+                  Expanded(
+                    flex: 3,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Expanded(
+                          flex: 3,
                           child: CatalogPageCatalog(),
                         ),
-                      ),
-                    ),
-
-                    SizedBox(width: 90,),
-                    Flexible(
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(vertical: 12),
-                        child: Container(
-                          width: 700,
+                        Expanded(
+                          flex: 1,
+                          child: SizedBox(),
+                        ),
+                        Expanded(
+                          flex: 12,
                           child: CatalogPageSearch(),
                         ),
-                      ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: CatalogPageProfile(name: 'Павел Петров', subname: 'Название организации',),
+                  )
+                ],
               ),
-              Align(
-                alignment: Alignment.centerRight,
-                child: Padding(
-                  padding: EdgeInsets.only(right: 40),
-                  child: CatalogPageProfile(name: 'Павел Петров', subname: 'Название организации',),
-                ),
-              )
-            ],
+            )
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Divider(height: 0, thickness: 0, color: Color(0xFFE0E6EF),)
           )
-        ),
-        Divider(height: 0, thickness: 0, color: Color(0xFFE0E6EF),)
-      ],
+        ],
+      ),
     );
   }
 }
