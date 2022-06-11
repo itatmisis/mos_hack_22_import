@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:moscow_city_hack_web/pages/catalog_page/appbar/catalog_page_profile.dart';
+import 'package:moscow_city_hack_web/pages/catalog_page/appbar/catalog_page_search.dart';
+
+import 'catalog_page_catalog.dart';
 
 class CatalogPageAppbar extends StatelessWidget {
   double? width, height;
@@ -31,14 +35,20 @@ class CatalogPageAppbar extends StatelessWidget {
                         ],
                       ),
                     ),
-
-                    SizedBox(width: 200,),
+                  ],
+                ),
+              ),
+              Align(
+                alignment: Alignment.center,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
                     Flexible(
                       child: Padding(
                         padding: EdgeInsets.symmetric(vertical: 12),
                         child: Container(
                           width: 160,
-                          color: Colors.blue,
+                          child: CatalogPageCatalog(),
                         ),
                       ),
                     ),
@@ -49,7 +59,7 @@ class CatalogPageAppbar extends StatelessWidget {
                         padding: EdgeInsets.symmetric(vertical: 12),
                         child: Container(
                           width: 700,
-                          color: Colors.blue,
+                          child: CatalogPageSearch(),
                         ),
                       ),
                     ),
@@ -58,19 +68,9 @@ class CatalogPageAppbar extends StatelessWidget {
               ),
               Align(
                 alignment: Alignment.centerRight,
-                child: Row(
-                  children: [
-                    SizedBox(width: 90,),
-                    Flexible(
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(vertical: 12),
-                        child: Container(
-                          width: 700,
-                          color: Colors.blue,
-                        ),
-                      ),
-                    ),
-                  ],
+                child: Padding(
+                  padding: EdgeInsets.only(right: 40),
+                  child: CatalogPageProfile(name: 'Павел Петров', subname: 'Название организации',),
                 ),
               )
             ],
