@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 
 class AppModel extends ChangeNotifier {
-  String _userType = '';
+  String _userType = 'company';
 
   String name = 'Павел Петров';
   String company = 'ИП “Петров Павел Евгеньевич”';

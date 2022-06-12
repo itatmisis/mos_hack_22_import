@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moscow_city_hack_web/model/app_model.dart';
 import 'package:moscow_city_hack_web/model/styles.dart';
 import 'package:moscow_city_hack_web/pages/catalog_page/profile_screen/profile_screen_model.dart';
 import 'package:moscow_city_hack_web/widgets/buttons/mch_button.dart';
@@ -22,16 +23,32 @@ class Subbar extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Текущие товары', style: TextStyle(color: Colors.black, fontSize: 25, fontWeight: FontWeight.bold),),
+                    Consumer<AppModel>(
+                      builder: (context, model, child) {
+                        return Consumer<ProfileScreenModel>(
+                          builder: (context, cart, child) {
+                            return model.userType == 'company'?
+                            Text('Текущие товары',
+                              style: TextStyle(color: Colors.black, fontSize: 25, fontWeight: FontWeight.bold),)
+                                : Text('На модерации',
+                              style: TextStyle(color: Colors.black, fontSize: 25, fontWeight: FontWeight.bold),);
+                          },
+                        );
+                      },
+                    ),
                     Expanded(
                       flex: 5,
                       child: SizedBox(),
                     ),
-                    Consumer<ProfileScreenModel>(
-                      builder: (context, cart, child) {
-                        return MCHButton(onPressed: () {
-                          cart.currentPage = 2;
-                        }, text: 'Добавить товар', color: Colors.green, width: 200,);
+                    Consumer<AppModel>(
+                      builder: (context, model, child) {
+                        return Consumer<ProfileScreenModel>(
+                          builder: (context, cart, child) {
+                            return model.userType == 'company'? MCHButton(onPressed: () {
+                              cart.currentPage = 2;
+                            }, text: 'Добавить товар', color: Colors.green, width: 200,): SizedBox();
+                          },
+                        );
                       },
                     ),
                     SizedBox(
