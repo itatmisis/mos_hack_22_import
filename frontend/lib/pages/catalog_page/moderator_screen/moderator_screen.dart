@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:moscow_city_hack_web/pages/catalog_page/catalog_page_model.dart';
+import 'package:moscow_city_hack_web/pages/catalog_page/moderator_screen/moderator_card/moderator_card.dart';
 import 'package:moscow_city_hack_web/pages/catalog_page/product_screen/chain/product_screen_chain.dart';
 import 'package:moscow_city_hack_web/pages/catalog_page/product_screen/company_card/company_card.dart';
 import 'package:moscow_city_hack_web/pages/catalog_page/product_screen/pictures_picker/pictures_picker.dart';
@@ -11,8 +12,8 @@ import 'package:moscow_city_hack_web/widgets/buttons/mch_text_button.dart';
 import 'package:provider/provider.dart';
 
 
-class CatalogPageProductScreen extends StatelessWidget {
-  const CatalogPageProductScreen({super.key});
+class ModeratorScreen extends StatelessWidget {
+  const ModeratorScreen({super.key});
 
 
   @override
@@ -38,13 +39,14 @@ class CatalogPageProductScreen extends StatelessWidget {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Container(
+                                    height: constraints.maxHeight,
                                     child: Column(
                                       mainAxisSize: MainAxisSize.min,
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         MCHTextButton(onPressed: () {}, text: 'Комплектующие', height: 16,),
                                         SizedBox(height: 10,),
-                                        Text('Электровелосипед Kugoo Kirin V1 для взрослых', style: TextStyle(fontSize: 30, fontWeight: FontWeight.w700),),
+                                        Text('Электровелосипед Kugoo Kirin V1', style: TextStyle(fontSize: 30, fontWeight: FontWeight.w700),),
                                         SizedBox(height: 40,),
                                         SizedBox(
                                           height: 445,
@@ -63,24 +65,10 @@ class CatalogPageProductScreen extends StatelessWidget {
                                               SizedBox(
                                                 height: 445,
                                                 width: 350,
-                                                child: CompanyCard(),
+                                                child: ModeratorCard(),
                                               )
                                             ],
                                           ),
-                                        ),
-                                        Padding(
-                                            padding: EdgeInsets.only(left: 63, top: 30, bottom: 60),
-                                            child: SizedBox(
-                                              height: 160,
-                                              child: ProductScreenChain(),
-                                            )
-                                        ),
-                                        Padding(
-                                            padding: EdgeInsets.only(left: 63, top: 30, bottom: 60),
-                                            child: SizedBox(
-                                              height: 400,
-                                              child: Similar(),
-                                            )
                                         ),
                                       ],
                                     ),

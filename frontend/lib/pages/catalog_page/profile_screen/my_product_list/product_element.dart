@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moscow_city_hack_web/model/styles.dart';
+import 'package:moscow_city_hack_web/pages/catalog_page/catalog_page.dart';
+import 'package:moscow_city_hack_web/pages/catalog_page/catalog_page_model.dart';
 import 'package:moscow_city_hack_web/pages/catalog_page/profile_screen/profile_screen_model.dart';
 import 'package:moscow_city_hack_web/widgets/buttons/mch_button.dart';
 import 'package:provider/provider.dart';
@@ -54,8 +56,14 @@ class ProductElement extends StatelessWidget {
                     ),
                     Expanded(
                       flex: 4,
-                      child: MCHButton(onPressed: () {},
-                        text: 'Посмотреть', color: Styles.cardCallButton, textColor: Styles.greenTextColor,),
+                      child: Consumer<CatalogPageModel>(
+                        builder: (context, model, child) {
+                          return MCHButton(onPressed: () {
+                            model.currentPage = 4;
+                          },
+                            text: 'Посмотреть', color: Styles.cardCallButton, textColor: Styles.greenTextColor,);
+                        },
+                      )
                     )
                   ],
                 ),

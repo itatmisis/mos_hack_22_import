@@ -8,7 +8,9 @@ class MCHTextButton extends StatefulWidget {
   String text;
   double height = 18;
 
-  MCHTextButton({Key? key, required this.onPressed, required this.text, double? height}) : super(key: key) {
+  Color? color;
+
+  MCHTextButton({Key? key, required this.onPressed, required this.text, double? height, this.color}) : super(key: key) {
     this.height = height?? this.height;
   }
 
@@ -23,7 +25,7 @@ class _MCHTextButtonState extends State<MCHTextButton> {
       text: TextSpan(
           text: widget.text,
           style: TextStyle(
-            color: Styles.accentColor,
+            color: widget.color?? Styles.accentColor,
             fontSize: widget.height
           ),
           recognizer: TapGestureRecognizer()

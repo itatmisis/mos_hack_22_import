@@ -4,6 +4,7 @@ import 'package:moscow_city_hack_web/pages/catalog_page/profile_screen/dashboard
 import 'package:moscow_city_hack_web/pages/catalog_page/profile_screen/left_bar/left_bar.dart';
 import 'package:moscow_city_hack_web/pages/catalog_page/profile_screen/my_product_list/my_product_list.dart';
 import 'package:moscow_city_hack_web/pages/catalog_page/profile_screen/profile_screen_model.dart';
+import 'package:moscow_city_hack_web/pages/catalog_page/profile_screen/thanks/profile_screen_thanks.dart';
 import 'package:provider/provider.dart';
 
 class CatalogPageProfileScreen extends StatelessWidget {
@@ -38,7 +39,8 @@ class CatalogPageProfileScreen extends StatelessWidget {
                           child: [
                             ProfileScreenDashboard(),
                             MyProductList(),
-                            ProfileScreenAddProduct()
+                            ProfileScreenAddProduct(),
+                            ProfileScreenThanks(),
                           ][cart.currentPage]
                       );
                     },
