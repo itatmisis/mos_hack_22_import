@@ -51,9 +51,9 @@ def req(url, INN, ts):
   
   
 
-if __name__ == "__main__":
+def find_adresses(file_name):
 
-    df = pd.read_excel('reestr.xlsx')
+    df = pd.read_excel(file_name)
     url = 'https://egrul.nalog.ru/'
 
     #print(req(url, 7718160370))
