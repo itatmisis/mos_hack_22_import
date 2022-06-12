@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moscow_city_hack_web/widgets/check_box_list/check_box_list.dart';
 import 'package:moscow_city_hack_web/widgets/choose_list.dart';
 
 
@@ -12,7 +13,7 @@ class CatalogPageLeftBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Padding(
-        padding: EdgeInsets.only(left: 80, top: 40),
+        padding: EdgeInsets.only(left: 40, top: 40),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -22,8 +23,11 @@ class CatalogPageLeftBar extends StatelessWidget {
             SizedBox(height: 40,),
             Text('Атрибуты товара', style: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),),
             SizedBox(height: 20,),
-            Text('Цена', style: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),),
-            SizedBox(height: 20,),
+            SizedBox(
+              height: 200,
+              child: CheckBoxList(data: List.generate(50, (index) => 'Вариант ${index}')),
+            ),
+            SizedBox(height: 40,),
           ],
         ),
       )

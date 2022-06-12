@@ -12,8 +12,6 @@ class CatalogPageCatalog extends StatelessWidget {
         borderRadius: BorderRadius.circular(9),
         color: Styles.accentColor
       ),
-      width: double.infinity,
-      height: double.infinity,
       child: Center(
         child: Text('Каталог', style: TextStyle(color: Colors.white, fontSize: 18),),
       )
