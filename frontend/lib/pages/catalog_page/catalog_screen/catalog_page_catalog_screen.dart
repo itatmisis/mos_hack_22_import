@@ -10,27 +10,30 @@ class CatalogPageCatalogScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Row(
-          children: [
-            Expanded(
-              flex: 1,
-              child: CatalogPageLeftBar(),
-            ),
-            Expanded(
-              flex: 4,
-              child: Column(
-                children: [
-                  Container(
-                    height: 60,
-                    child: CatalogPageSubbar(),
-                  ),
-                  Expanded(
-                    child: CatalogPageGrid(),
-                  )
-                ],
+        body: Container(
+          color: Colors.white,
+          child: Row(
+            children: [
+              Expanded(
+                flex: 1,
+                child: CatalogPageLeftBar(),
               ),
-            )
-          ],
+              Expanded(
+                flex: 4,
+                child: Column(
+                  children: [
+                    Container(
+                      height: 60,
+                      child: CatalogPageSubbar(),
+                    ),
+                    Expanded(
+                      child: CatalogPageGrid(),
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
         )
     );
   }

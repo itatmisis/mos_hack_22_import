@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CatalogPageModel extends ChangeNotifier {
-  int _currentPage = 0;
+  int _currentPage = 3;
 
   int get currentPage => _currentPage;
 

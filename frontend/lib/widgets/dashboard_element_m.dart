@@ -3,18 +3,18 @@ import 'package:moscow_city_hack_web/model/styles.dart';
 import 'package:moscow_city_hack_web/widgets/elevated_container/elevated_container.dart';
 
 
-class ProfileScreenDashboardElementM extends StatelessWidget {
+class DashboardElementM extends StatelessWidget {
 
   String text;
   int n, inf;
 
-  ProfileScreenDashboardElementM({super.key, required this.text, required this.n, required this.inf});
+  DashboardElementM({super.key, required this.text, required this.n, required this.inf});
 
   @override
   Widget build(BuildContext context) {
     return ElevatedContainer(
       child: Padding(
-        padding: EdgeInsets.only(left: 40),
+        padding: EdgeInsets.only(left: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -28,7 +28,9 @@ class ProfileScreenDashboardElementM extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(n.toString(), style: TextStyle(color: Colors.black, fontSize: 50),),
-                Text(inf > 0? '+$inf':' $inf', style: TextStyle(color: inf > 0? Colors.green:Colors.red, fontSize: 20),),
+                inf != 0? Text(inf > 0? '+$inf':' $inf',
+                  style: TextStyle(color: inf > 0? Colors.green:Colors.red, fontSize: 20)
+                ):SizedBox()
               ],
             )
           ],
