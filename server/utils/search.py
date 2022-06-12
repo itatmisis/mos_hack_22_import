@@ -3,6 +3,7 @@ import pandas
 import sys
 #sys.path.append('../server')
 from models import Item
+from server.utils.models import Company
 
 
 class SQLighter:
@@ -43,7 +44,21 @@ def search_item(industry, moscow, query):
 
     return [Item.parse_obj(item) for item in a]
 
+def search_company(industry, moscow, query):
+    """
+    Search company in database
+    :param industry: str
+    :param moscow: str
+    :param query: str
+    :return: list
+    """
+    db = SQLighter()
+    if moscow:
+        a = db.select(f"SELECT * FROM orgs WHERE lower(industry) like '%{industry}%' AND lower(Companyname) like '%{(query)}%' AND lower(adress) like '%москва%'")
+    else:
+        a = db.select(f"SELECT * FROM orgs WHERE industry like '%{industry}%' AND Companyname like '%{query}%'")
 
+    return [Company.parse_obj(comp) for comp in a]
 
 #print(search_item('хим', True, ''))
 
