@@ -29,15 +29,18 @@ class MyApp extends StatelessWidget {
       routes: {
         '/loginPage': (BuildContext context) => LoginPage(),
       },
+      debugShowCheckedModeBanner: false,
 
       onGenerateRoute: (settings) {
         if (settings.name == "/catalogPage") {
           return PageRouteBuilder(
-              settings: settings, // Pass this to make popUntil(), pushNamedAndRemoveUntil(), works
+              settings: settings,
               pageBuilder: (_, __, ___) => CatalogPage(),
-              transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c)
+              transitionsBuilder:
+                  (_, a, __, c) => FadeTransition(opacity: a, child: c)
           );
         }
+        return null;
       },
 
       initialRoute: '/loginPage',

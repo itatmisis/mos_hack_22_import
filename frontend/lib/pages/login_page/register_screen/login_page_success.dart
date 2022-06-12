@@ -19,15 +19,17 @@ class LoginPageSuccess extends StatelessWidget {
             alignment: Alignment.center,
             child: LoginPageContainer(
               child: Padding(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     SvgPicture.asset('assets/galochka.svg', width: 110,),
-                    Text('Спасибо!', style: TextStyle(fontSize: 45, fontWeight: FontWeight.bold),),
-                    SizedBox(height: 20,),
-                    Text('Мы рассмотрим вашу заявку\nи свяжемся с вами в ближайшее время', textAlign: TextAlign.center,),
-                    SizedBox(height: 20,),
+                    const Text('Спасибо!',
+                      style: TextStyle(fontSize: 45, fontWeight: FontWeight.bold),),
+                    const SizedBox(height: 20,),
+                    const Text('Мы рассмотрим вашу заявку\nи свяжемся с вами в ближайшее время',
+                      textAlign: TextAlign.center,),
+                    const SizedBox(height: 20,),
                     Consumer<LoginPageModel>(
                       builder: (context, cart, child) {
                         return MCHButton(onPressed: () {

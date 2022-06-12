@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:moscow_city_hack_web/pages/catalog_page/profile_page/dashboard/dashboard_element_l.dart';
-import 'package:moscow_city_hack_web/pages/catalog_page/profile_page/dashboard/dashboard_element_m.dart';
+import 'package:moscow_city_hack_web/pages/catalog_page/profile_screen/dashboard/dashboard_element_l.dart';
+import 'package:moscow_city_hack_web/pages/catalog_page/profile_screen/dashboard/dashboard_element_m.dart';
 import 'package:moscow_city_hack_web/widgets/elevated_container/elevated_container.dart';
 
 

@@ -5,10 +5,12 @@ class MCHButton extends StatefulWidget {
   void Function() onPressed;
   String text;
   double? width, height;
-  late Color color;
+  late Color color, textColor;
 
-  MCHButton({Key? key, required this.onPressed, required this.text, this.width, this.height, Color? color}) : super(key: key) {
+  MCHButton({Key? key, required this.onPressed,
+    required this.text, this.width, this.height, Color? color, Color? textColor}) : super(key: key) {
     this.color = color ?? Styles.accentColor;
+    this.textColor = textColor ?? Colors.white;
   }
 
   @override
@@ -35,7 +37,7 @@ class _MCHButtonState extends State<MCHButton> {
         child: Text(
           widget.text,
           style: TextStyle(
-              color: Colors.white,
+              color: widget.textColor,
               fontSize: 18
           ),
         ),

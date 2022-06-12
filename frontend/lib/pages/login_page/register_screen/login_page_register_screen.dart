@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:moscow_city_hack_web/pages/login_page/login_page_model.dart';
 import 'package:moscow_city_hack_web/widgets/buttons/mch_button.dart';
 import 'package:moscow_city_hack_web/widgets/buttons/mch_text_button.dart';
-import 'package:moscow_city_hack_web/widgets/mch_textfield.dart';
+import 'package:moscow_city_hack_web/widgets/text_fields/mch_textfield.dart';
 import 'package:provider/provider.dart';
 
 import '../login_page_container.dart';

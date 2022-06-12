@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:moscow_city_hack_web/model/styles.dart';
-import 'package:moscow_city_hack_web/widgets/mch_textfield.dart';
+import 'package:moscow_city_hack_web/widgets/text_fields/mch_textfield.dart';
 
 class ChooseList extends StatefulWidget {
 
@@ -10,9 +10,12 @@ class ChooseList extends StatefulWidget {
 
   late Color activeColor;
 
-  ChooseList({Key? key, required this.data, void Function(int)? onPressed, Color? activeColor}) : super(key: key) {
+  bool active = false;
+
+  ChooseList({Key? key, required this.data, void Function(int)? onPressed, Color? activeColor, bool? onlyActive}) : super(key: key) {
     this.onPressed = onPressed?? this.onPressed;
     this.activeColor = activeColor?? Styles.accentColor;
+    this.active = onlyActive?? this.active;
   }
 
   @override
@@ -35,11 +38,11 @@ class _ChooseListState extends State<ChooseList> {
             text: TextSpan(
                 text: widget.data[i],
                 style: TextStyle(
-                    color: i == active? widget.activeColor: Colors.black,
+                    color: i == active? widget.activeColor: widget.active? Styles.grayTextColor: Colors.black,
                     fontSize: 18
                 ),
                 recognizer: TapGestureRecognizer()
-                  ..onTap = () {
+                  ..onTap =  widget.active && i != 0? () {} : () {
                     setState(() {
                       active = i;
                       widget.onPressed(i);

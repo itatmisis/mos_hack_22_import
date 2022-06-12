@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moscow_city_hack_web/model/styles.dart';
-import 'package:moscow_city_hack_web/widgets/mch_textfield.dart';
+import 'package:moscow_city_hack_web/widgets/text_fields/mch_textfield.dart';
 
 class CheckBoxList extends StatefulWidget {
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moscow_city_hack_web/pages/catalog_page/profile_page/dashboard/chart.dart';
+import 'package:moscow_city_hack_web/pages/catalog_page/profile_screen/dashboard/chart.dart';
 import 'package:moscow_city_hack_web/widgets/elevated_container/elevated_container.dart';
 
 
