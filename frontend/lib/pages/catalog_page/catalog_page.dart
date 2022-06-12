@@ -3,6 +3,7 @@ import 'package:moscow_city_hack_web/pages/catalog_page/appbar/catalog_page_appb
 import 'package:moscow_city_hack_web/pages/catalog_page/catalog_page_model.dart';
 import 'package:moscow_city_hack_web/pages/catalog_page/catalog_screen/catalog_page_catalog_screen.dart';
 import 'package:moscow_city_hack_web/pages/catalog_page/product_screen/catalog_page_product_screen.dart';
+import 'package:moscow_city_hack_web/pages/catalog_page/profile_page/profile_screen.dart';
 import 'package:provider/provider.dart';
 
 
@@ -10,7 +11,8 @@ class CatalogPage extends StatelessWidget {
 
   List ch = [
     CatalogPageCatalogScreen(),
-    CatalogPageProductScreen()
+    CatalogPageProductScreen(),
+    CatalogPageProfileScreen()
   ];
 
   CatalogPage({super.key});

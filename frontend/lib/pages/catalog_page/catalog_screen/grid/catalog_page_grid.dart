@@ -1,8 +1,4 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:moscow_city_hack_web/pages/catalog_page/catalog_page_model.dart';
-import 'package:provider/provider.dart';
-
 import 'catalog_page_grid_card.dart';
 
 class CatalogPageGrid extends StatelessWidget {

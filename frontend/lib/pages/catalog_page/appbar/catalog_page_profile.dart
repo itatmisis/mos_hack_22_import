@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moscow_city_hack_web/model/styles.dart';
+import 'package:moscow_city_hack_web/pages/catalog_page/catalog_page_model.dart';
+import 'package:provider/provider.dart';
 
 class CatalogPageProfile extends StatelessWidget {
   String name, subname;
@@ -9,30 +11,37 @@ class CatalogPageProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-        style: ButtonStyle(
-          overlayColor: MaterialStateProperty.all<Color>(Colors.transparent),
-        ),
-        onPressed: () {},
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              color: Styles.accentColor,
-              height: 50,
-              width: 50,
+    return Consumer<CatalogPageModel>(
+      builder: (context, cart, child) {
+        return TextButton(
+            style: ButtonStyle(
+              overlayColor: MaterialStateProperty.all<Color>(Colors.transparent),
             ),
-            SizedBox(width: 20,),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            onPressed: () {
+              if (cart.currentPage != 2) cart.currentPage = 2;
+              else cart.currentPage = 0;
+            },
+            child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(name, style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),),
-                Text(subname, style: TextStyle(color: Colors.black),)
+                Container(
+                  color: Styles.accentColor,
+                  height: 50,
+                  width: 50,
+                ),
+                SizedBox(width: 20,),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(name, style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),),
+                    Text(subname, style: TextStyle(color: Colors.black),)
+                  ],
+                )
               ],
             )
-          ],
-        )
+        );
+      },
     );
   }
 }

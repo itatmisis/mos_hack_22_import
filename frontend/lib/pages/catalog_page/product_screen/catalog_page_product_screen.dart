@@ -5,6 +5,7 @@ import 'package:moscow_city_hack_web/pages/catalog_page/catalog_page_model.dart'
 import 'package:moscow_city_hack_web/pages/catalog_page/product_screen/chain/product_screen_chain.dart';
 import 'package:moscow_city_hack_web/pages/catalog_page/product_screen/company_card/company_card.dart';
 import 'package:moscow_city_hack_web/pages/catalog_page/product_screen/pictures_picker/pictures_picker.dart';
+import 'package:moscow_city_hack_web/pages/catalog_page/product_screen/similar/similar.dart';
 import 'package:moscow_city_hack_web/pages/catalog_page/product_screen/simple_specs/simple_specs.dart';
 import 'package:moscow_city_hack_web/widgets/buttons/mch_text_button.dart';
 import 'package:provider/provider.dart';
@@ -73,7 +74,13 @@ class CatalogPageProductScreen extends StatelessWidget {
                                               child: ProductScreenChain(),
                                             )
                                         ),
-                                        
+                                        Padding(
+                                            padding: EdgeInsets.only(left: 63, top: 30, bottom: 60),
+                                            child: SizedBox(
+                                              height: 400,
+                                              child: Similar(),
+                                            )
+                                        ),
                                       ],
                                     ),
                                   ),
