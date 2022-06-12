@@ -31,7 +31,7 @@ def search_company_text(moscow, query):
     :return: list
     """
 
-    inn = INN_finder('query')
+    inn = INN_finder(query)
 
     top = ''
     num = len(inn)
