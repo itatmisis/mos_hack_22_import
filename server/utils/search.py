@@ -3,8 +3,8 @@ import pandas
 import sys
 #sys.path.append('../server')
 from models import Item
-from server.utils.models import Company
-
+from models import Company
+from word_finder import INN_finder
 
 class SQLighter:
     def __init__(self):
@@ -44,7 +44,7 @@ def search_item(industry, moscow, query):
 
     return [Item.parse_obj(item) for item in a]
 
-def search_company(industry, moscow, query):
+def search_company(moscow, query):
     """
     Search company in database
     :param industry: str
@@ -52,13 +52,19 @@ def search_company(industry, moscow, query):
     :param query: str
     :return: list
     """
-    db = SQLighter()
-    if moscow:
-        a = db.select(f"SELECT * FROM orgs WHERE lower(industry) like '%{industry}%' AND lower(Companyname) like '%{(query)}%' AND lower(adress) like '%москва%'")
-    else:
-        a = db.select(f"SELECT * FROM orgs WHERE industry like '%{industry}%' AND Companyname like '%{query}%'")
 
-    return [Company.parse_obj(comp) for comp in a]
+    inn = INN_finder('query')
+
+    return inn
+    db = SQLighter()
+    
+    # if moscow:
+    #     a = db.select(f"SELECT * FROM full_products WHERE lower(industry) like '%{industry}%' AND lower(Companyname) like '%{(query)}%' AND lower(adress) like '%москва%'")
+    # else:
+    #     a = db.select(f"SELECT * FROM orgs WHERE industry like '%{industry}%' AND Companyname like '%{query}%'")
+
+    # return [Company.parse_obj(comp) for comp in a]
 
 #print(search_item('хим', True, ''))
 
+print(search_company(True,  'лакокрасочные материалы'))
