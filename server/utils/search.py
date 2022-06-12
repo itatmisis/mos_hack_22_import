@@ -1,6 +1,9 @@
-
 import csv, sqlite3
 import pandas
+import sys
+#sys.path.append('../server')
+from models import Item
+
 
 class SQLighter:
     def __init__(self):
@@ -36,6 +39,11 @@ def search_item(industry, moscow, query):
         #a = db.select(f"SELECT * FROM full_products WHERE lower(industry) like '%{industry}%' AND lower(adress) like 'москва' AND lower(Productname) like '%{(query)}%'")
     else:
         a = db.select(f"SELECT * FROM full_products WHERE industry like '%{industry}%' AND Productname like '%{query}%'")
-    return a
+    #return a
 
-print(search_item('хим', False, ''))
+    return [Item.parse_obj(item) for item in a]
+
+
+
+#print(search_item('хим', True, ''))
+
