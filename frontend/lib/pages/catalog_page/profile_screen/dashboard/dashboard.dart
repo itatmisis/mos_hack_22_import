@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moscow_city_hack_web/pages/catalog_page/profile_screen/dashboard/dashboard_element_l.dart';
-import 'package:moscow_city_hack_web/pages/catalog_page/profile_screen/dashboard/dashboard_element_m.dart';
-import 'package:moscow_city_hack_web/widgets/elevated_container/elevated_container.dart';
-
+import 'package:moscow_city_hack_web/widgets/dashboard_element_m.dart';
 
 class ProfileScreenDashboard extends StatelessWidget {
 
@@ -26,25 +24,25 @@ class ProfileScreenDashboard extends StatelessWidget {
                     Expanded(
                       child: Padding(
                         padding: EdgeInsets.all(10),
-                        child: ProfileScreenDashboardElementM(text: 'Просмотры сегодня', n: 101, inf: 51,),
+                        child: DashboardElementM(text: 'Просмотры сегодня', n: 101, inf: 51,),
                       ),
                     ),
                     Expanded(
                       child: Padding(
                         padding: EdgeInsets.all(10),
-                        child: ProfileScreenDashboardElementM(text: 'Просмотры за месяц', n: 2341, inf: 1322,),
+                        child: DashboardElementM(text: 'Просмотры за месяц', n: 2341, inf: 1322,),
                       ),
                     ),
                     Expanded(
                       child: Padding(
                         padding: EdgeInsets.all(10),
-                        child: ProfileScreenDashboardElementM(text: 'Просмотры за месяц', n: 33, inf: -12,),
+                        child: DashboardElementM(text: 'Просмотры за месяц', n: 33, inf: -12,),
                       ),
                     ),
                     Expanded(
                       child: Padding(
                         padding: EdgeInsets.all(10),
-                        child: ProfileScreenDashboardElementM(text: 'Переходы на сайт за месяц', n: 1336, inf: 144,),
+                        child: DashboardElementM(text: 'Переходы на сайт за месяц', n: 1336, inf: 144,),
                       ),
                     ),
                   ],

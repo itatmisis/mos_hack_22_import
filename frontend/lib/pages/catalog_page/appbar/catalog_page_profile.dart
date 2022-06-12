@@ -27,7 +27,7 @@ class CatalogPageProfile extends StatelessWidget {
                 Container(
                   decoration: BoxDecoration(
                     color: Styles.accentColor,
-                    borderRadius: BorderRadius.circular(50)
+                    shape: BoxShape.circle,
                   ),
                   height: 50,
                   width: 50,

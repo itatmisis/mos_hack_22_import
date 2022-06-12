@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:moscow_city_hack_web/model/styles.dart';
 
 class CatalogPageSearch extends StatelessWidget {
 
-  double borderRadius = 9;
+  double borderRadius = 8;
 
   CatalogPageSearch({super.key});
 
@@ -36,6 +37,9 @@ class CatalogPageSearch extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(topRight: Radius.circular(borderRadius), bottomRight: Radius.circular(borderRadius)),
               color: Styles.accentColor,
+            ),
+            child: Center(
+              child: SvgPicture.asset('assets/search.svg'),
             ),
           ),
         )
