@@ -98,15 +98,27 @@ class CatalogPageModel extends ChangeNotifier {
   late DataItem activeId;
   late CompanyItem activeCompany;
 
+  String text = '';
+
+  bool _isMoscow = false;
+
+  bool get isMoscow => _isMoscow;
+
+  set isMoscow(bool value) {
+    _isMoscow = value;
+    search();
+    notifyListeners();
+  }
+
   bool _superSearch = false;
 
-  int _category = 0;
+  int _category = -1;
 
   int get category => _category;
 
   set category(int value) {
     _category = value;
-    notifyListeners();
+    search();
   }
 
   bool get superSearch => _superSearch;
@@ -133,24 +145,28 @@ class CatalogPageModel extends ChangeNotifier {
   }
 
 
-  void search(String text, bool is_moscow, [ int category = -1]) async {
+  void search() async {
     connection = SearchConnection.inProcess();
-    connection = await getFromServer(text, is_moscow, category);
+    connection = await getFromServer(text, _isMoscow, _category);
+    notifyListeners();
   }
 
   Future<SearchConnection> getFromServer(String text, bool is_moscow, int category) async {
     var responseItems = await post(
-        Uri.parse('http://moshack.itatmisis.ru:8000/items/search'),
+        Uri.parse('http://84.38.185.155/items/search'),
         headers: {'Content-Type': 'application/json'},
         body: json.encode({'text':text, 'is_moscow': is_moscow, 'category': category}));
 
     var responseCompanies = await post(
-        Uri.parse('http://moshack.itatmisis.ru:8000/companies/search'),
+        Uri.parse('http://84.38.185.155/companies/search'),
         headers: {'Content-Type': 'application/json'},
         body: json.encode({'text':text, 'is_moscow': is_moscow, 'category': category}));
 
+    print(responseItems);
+
     var encodedItems = json.decode(utf8.decode(responseItems.body.codeUnits));
     var encodedCompanies = json.decode(utf8.decode(responseCompanies.body.codeUnits));
+
 
     List<DataItem> items = List.generate(50, (index) =>
         DataItem(
@@ -164,8 +180,6 @@ class CatalogPageModel extends ChangeNotifier {
           company_name: encodedItems['items'][index]['company_name']
         )
     );
-
-    print(encodedCompanies);
 
     List<CompanyItem> company = List.generate(50, (index) =>
         CompanyItem(

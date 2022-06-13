@@ -108,7 +108,7 @@ class CatalogPageOverviewScreen extends StatelessWidget {
                                                   Expanded(
                                                     flex: 1,
                                                     child: MCHButton(onPressed: () {
-                                                      html.window.open('moshack.itatmisis.ru/graph.html', 'Модель');
+                                                      html.window.open('graph.html', 'Модель');
                                                     },
                                                       text: 'Посмотреть', color: Styles.cardCallButton, textColor: Styles.greenTextColor,),
                                                   )

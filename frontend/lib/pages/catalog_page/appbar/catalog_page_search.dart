@@ -14,52 +14,57 @@ class CatalogPageSearch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          flex: 5,
-          child: TextField(
-              decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.white,
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFF3272D9), style: BorderStyle.solid),
-                    borderRadius: BorderRadius.only(topLeft: Radius.circular(borderRadius), bottomLeft: Radius.circular(borderRadius)),
+    return Consumer<CatalogPageModel>(
+        builder: (context, cart, child) {
+          return Row(
+            children: [
+              Expanded(
+                flex: 5,
+                child: TextField(
+                  decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white,
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xFF3272D9), style: BorderStyle.solid),
+                        borderRadius: BorderRadius.only(topLeft: Radius.circular(borderRadius), bottomLeft: Radius.circular(borderRadius)),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xFF3272D9), style: BorderStyle.solid),
+                        borderRadius: BorderRadius.only(topLeft: Radius.circular(borderRadius), bottomLeft: Radius.circular(borderRadius)),
+                      ),
+                      hintText: 'Искать'
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFF3272D9), style: BorderStyle.solid),
-                    borderRadius: BorderRadius.only(topLeft: Radius.circular(borderRadius), bottomLeft: Radius.circular(borderRadius)),
-                  ),
-                  hintText: 'Искать'
-              ),
-            onChanged: (s) {
-                text = s;
-            },
-          ),
-        ),
-        Expanded(
-          flex: 1,
-          child: Consumer<CatalogPageModel>(
-            builder: (context, model, child) {
-              return GestureDetector(
-                onTap: () {
-                  model.currentPage = 0;
-                  model.search(text, false);
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(topRight: Radius.circular(borderRadius), bottomRight: Radius.circular(borderRadius)),
-                    color: Styles.accentColor,
-                  ),
-                  child: Center(
-                    child: SvgPicture.asset('assets/search.svg'),
-                  ),
+                  onChanged: (s) {
+                    text = s;
+                    cart.text = text;
+                  },
                 ),
-              );
-            },
-          )
-        )
-      ],
+              ),
+              Expanded(
+                  flex: 1,
+                  child: Consumer<CatalogPageModel>(
+                    builder: (context, model, child) {
+                      return GestureDetector(
+                        onTap: () {
+                          model.currentPage = 0;
+                          model.search();
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(topRight: Radius.circular(borderRadius), bottomRight: Radius.circular(borderRadius)),
+                            color: Styles.accentColor,
+                          ),
+                          child: Center(
+                            child: SvgPicture.asset('assets/search.svg'),
+                          ),
+                        ),
+                      );
+                    },
+                  )
+              )
+            ],
+          );
+        }
     );
   }
 }
