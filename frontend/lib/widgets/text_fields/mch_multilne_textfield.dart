@@ -28,7 +28,8 @@ class MCHMutlilineTextField extends StatelessWidget {
                   borderSide: BorderSide.none,
                   borderRadius: BorderRadius.circular(9)
               ),
-              hintText: hint
+              hintText: hint,
+              hintStyle: TextStyle(color: Color(0xFFB8BEC7))
           )
       ),
     );

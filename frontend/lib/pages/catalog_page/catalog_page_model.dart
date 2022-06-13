@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 
 class DataItem {
   int id;
@@ -57,6 +60,22 @@ class CompanyItem {
     required this.website,
     required this.registration_date
 });
+
+  List<String> get specs {
+    return [
+      'Номер',
+      'Оф. название', 'Название', 'Описание', 'Адрес', 'Номер', 'Почта', 'Картинка', 'Отрасль', 'Категория', 'Подкатегория', 'Сайт', 'Дата регистрации', 'ИНН', 'ОГРН', 'КПП', 'ЕМП'
+    ];
+  }
+
+  List<String> get items {
+    return [
+      id.toString(),
+      oficcial_name, company_name, description, address, phone, email,
+      brand_image, industry, category, subcategory, website, registration_date,
+      inn, ogrn, kpp,emp_num
+    ];
+  }
 }
 
 
@@ -120,37 +139,53 @@ class CatalogPageModel extends ChangeNotifier {
   }
 
   Future<SearchConnection> getFromServer(String text, bool is_moscow, int category) async {
+    var responseItems = await post(
+        Uri.parse('http://moshack.itatmisis.ru/items/search'),
+        headers: {'Content-Type': 'application/json'},
+        body: json.encode({'text':text, 'is_moscow': is_moscow, 'category': category}));
+
+    var responseCompanies = await post(
+        Uri.parse('http://moshack.itatmisis.ru/companies/search'),
+        headers: {'Content-Type': 'application/json'},
+        body: json.encode({'text':text, 'is_moscow': is_moscow, 'category': category}));
+
+    var encodedItems = json.decode(utf8.decode(responseItems.body.codeUnits));
+    var encodedCompanies = json.decode(utf8.decode(responseCompanies.body.codeUnits));
+
     List<DataItem> items = List.generate(50, (index) =>
         DataItem(
-            id: index,
-            name: 'Название $index',
-            address: 'Адрес $index',
-            industry: 'Отрасль $index',
-            category: 'Категория $index',
-            subcategory: 'Подкатегория $index',
-            is_moscow: false,
-          company_name: 'Компания $index'
+            id: encodedItems['items'][index]['id'],
+            name: encodedItems['items'][index]['name'],
+            address: encodedItems['items'][index]['address'],
+            industry: encodedItems['items'][index]['industry'],
+            category: encodedItems['items'][index]['category'],
+            subcategory: encodedItems['items'][index]['subcategory'],
+            is_moscow: encodedItems['items'][index]['is_moscow'],
+          company_name: encodedItems['items'][index]['company_name']
         )
     );
+
+    print(encodedCompanies);
+
     List<CompanyItem> company = List.generate(50, (index) =>
         CompanyItem(
-            id: index,
-            inn: index.toString(),
-            ogrn: index.toString(),
-            kpp: index.toString(),
-            emp_num: index.toString(),
-            oficcial_name: 'Имя $index',
-            company_name: 'Компания $index',
-            description: 'Описание $index',
-            address: 'Адрес $index',
-            phone: 'Телефон $index',
-            email: 'Имаил $index',
-            brand_image: 'Картинка $index',
-            industry: 'Отрасль $index',
-            category: 'Категория $index',
-            subcategory: 'Подкатегория $index',
-            website: 'Сайт $index',
-            registration_date: 'Дата регистрации $index'
+            id: encodedCompanies['companies'][index]['id']?? 0,
+            inn: encodedCompanies['companies'][index]['inn']?? '',
+            ogrn: encodedCompanies['companies'][index]['ogrn']?? '',
+            kpp: encodedCompanies['companies'][index]['kpp']?? '',
+            emp_num: encodedCompanies['companies'][index]['emp_num']?? '',
+            oficcial_name: encodedCompanies['companies'][index]['official_name']?? '',
+            company_name: encodedCompanies['companies'][index]['company_name']?? '',
+            description: (encodedCompanies['companies'][index]['description']?? '').toString().length > 70? (encodedCompanies['companies'][index]['description']?? '').toString().substring(0, 70) + '...' : (encodedCompanies['companies'][index]['description']?? ''),
+            address: encodedCompanies['companies'][index]['address']?? '',
+            phone: encodedCompanies['companies'][index]['phone']?? '',
+            email: encodedCompanies['companies'][index]['email']?? '',
+            brand_image: encodedCompanies['companies'][index]['brand_image']?? '',
+            industry: encodedCompanies['companies'][index]['industry']?? '',
+            category: encodedCompanies['companies'][index]['category']?? '',
+            subcategory: encodedCompanies['companies'][index]['subcategory']?? '',
+            website: encodedCompanies['companies'][index]['website']?? '',
+            registration_date: encodedCompanies['companies'][index]['registration_date']?? ''
         )
     );
 
@@ -162,6 +197,6 @@ class CatalogPageModel extends ChangeNotifier {
       });
     });
 
-    return await Future.delayed(Duration(seconds: 2), () => SearchConnection.ready(items, company));
+    return await SearchConnection.ready(items, company);
   }
 }

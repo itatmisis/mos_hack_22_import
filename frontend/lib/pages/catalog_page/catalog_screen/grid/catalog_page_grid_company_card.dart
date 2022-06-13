@@ -18,7 +18,7 @@ class CatalogPageGridCompanyCard extends StatelessWidget {
         builder: (context, cart, child) {
           return GestureDetector(
             onTap: () {
-              cart.currentPage = 6;
+              cart.currentPage = 1;
               cart.activeCompany = this.item;
             },
             child: Column(
@@ -36,7 +36,7 @@ class CatalogPageGridCompanyCard extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(9),
                                 color: Styles.backgroundGray,
                               ),
-                              child: Image.network(item.brand_image),
+                              child: Image.asset('assets/image.png'),
                             ),
                           ),
                           SizedBox(height: 30,),

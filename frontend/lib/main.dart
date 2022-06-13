@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider<AppModel>(
       create: (context) => AppModel(),
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Сайт',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),

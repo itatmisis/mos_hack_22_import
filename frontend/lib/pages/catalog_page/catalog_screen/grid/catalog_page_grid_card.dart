@@ -37,6 +37,7 @@ class CatalogPageGridCard extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(9),
                                 color: Styles.backgroundGray,
                               ),
+                              child: Image.asset('assets/image.png'),
                             ),
                           ),
                           SizedBox(height: 30,),

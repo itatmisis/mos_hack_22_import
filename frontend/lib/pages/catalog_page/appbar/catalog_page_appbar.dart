@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:moscow_city_hack_web/model/app_model.dart';
 import 'package:moscow_city_hack_web/pages/catalog_page/appbar/catalog_page_profile.dart';
 import 'package:moscow_city_hack_web/pages/catalog_page/appbar/catalog_page_search.dart';
+import 'package:moscow_city_hack_web/pages/catalog_page/catalog_page_model.dart';
 import 'package:provider/provider.dart';
 
 import 'catalog_page_catalog.dart';
@@ -29,11 +30,20 @@ class CatalogPageAppbar extends StatelessWidget {
                   children: [
                     Expanded(
                         flex: 2,
-                        child: Row(
-                          children: [
-                            Image.asset('assets/deptrans.png'),
-                            Image.asset('assets/mosprom.png'),
-                          ],
+                        child: Consumer<CatalogPageModel>(
+                          builder: (context, cart, child) {
+                            return GestureDetector(
+                              onTap: () {
+                                cart.currentPage = 3;
+                              },
+                              child: Row(
+                                children: [
+                                  Image.asset('assets/deptrans.png'),
+                                  Image.asset('assets/mosprom.png'),
+                                ],
+                              ),
+                            );
+                          },
                         )
                     ),
                     Expanded(
