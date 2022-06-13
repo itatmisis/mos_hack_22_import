@@ -52,7 +52,7 @@ class LoginPageLoginScreen extends StatelessWidget {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  MCHTextField(hint: 'Логин (123 или 132, пробовать оба)', onChanged: (s) {login = s;}),
+                                  MCHTextField(hint: 'Логин (user или moder)', onChanged: (s) {login = s;}),
                                   SizedBox(height: 30,),
                                   MCHTextField(hint: 'Пароль (123)', onChanged: (s) {pass = s;}),
                                   SizedBox(height: 20,),
@@ -63,10 +63,10 @@ class LoginPageLoginScreen extends StatelessWidget {
                                     child: Column(
                                       children: [
                                         MCHButton(onPressed: () {
-                                          if (login == '123' && pass == '123') {
+                                          if (login == 'user' && pass == '123') {
                                             cart.userType = 'company';
                                             Navigator.pushReplacementNamed(context, '/catalogPage', );
-                                          } else if (login == '132' && pass == '123') {
+                                          } else if (login == 'moder' && pass == '123') {
                                             cart.userType = 'moderator';
                                             Navigator.pushReplacementNamed(context, '/catalogPage', );
                                           }
