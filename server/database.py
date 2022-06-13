@@ -78,6 +78,10 @@ class SQLighter:
 
         return result_to_companies(a)
 
+    def search_companies_by_inn(self, inns: List) -> List[models.Company]:
+        a = self.select(f"SELECT * FROM orgs WHERE inn in ({inns})")
+        return result_to_companies(a)
+
     # def search_company_text(self, moscow, query):
     #     """
     #     Search company in database

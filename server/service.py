@@ -2,6 +2,9 @@ import logging
 import re
 import models
 
+import numpy as np
+import spacy
+
 from fuzzywuzzy import process
 
 from database import data_source
@@ -12,6 +15,8 @@ industries = ['Металлургия', 'Лесная промышленност
               'Пищевая промышленность', 'Транспортное машиностроение', 'Нефтегазовая промышленность', 'Судостроение', 'Авиационная промышленность', 'Горная промышленность', 'Космическая промышленность', 'Оборонно-промышленный комплекс', 'Ювелирная промышленность']
 
 industries = {idx: el for idx, el in enumerate(industries)}
+
+# nlp = spacy.load("ru_core_news_md")
 
 
 def _clear_string(text: str) -> str:
@@ -28,7 +33,7 @@ def find_items(search: models.Search) -> models.ItemsSearchResult:
     found_items_names = [_clear_string(i.name) for i in found_items]
 
     choices_dict = {idx: el for idx, el in enumerate(found_items_names)}
-    search_result = process.extract(query, choices_dict, limit=20)
+    search_result = process.extract(query, choices_dict, limit=50)
     logger.info(search_result)
     indexes = [i[-1] for i in search_result]
 
@@ -42,7 +47,37 @@ def find_items(search: models.Search) -> models.ItemsSearchResult:
 
 def find_companies(search: models.Search) -> models.CompaniesSearchResult:
     result = models.CompaniesSearchResult()
+    query = _clear_string(search.text)
+
+    industry = industries[search.category] if search.category > 0 else ""
+
+    found_companies = data_source.search_company(industry, moscow=search.is_moscow)
+    found_companies = list(filter(lambda x: x.description is not None, found_companies))
+    found_companies_desc = [i.description for i in found_companies]
+
+    choices_dict = {idx: el for idx, el in enumerate(found_companies_desc)}
+    search_result = process.extract(query, choices_dict, limit=50)
+    indexes = [i[-1] for i in search_result]
+
+    found_companies = list(map(found_companies.__getitem__, indexes))
+    result.companies = found_companies
+
     return result
+
+
+# def find_companies(search: models.Search) -> models.CompaniesSearchResult:
+#     result = models.CompaniesSearchResult()
+#     query = _clear_string(search.text)
+#
+#     industry = industries[search.category] if search.category > 0 else ""
+#     found_companies = data_source.search_company(industry, moscow=search.is_moscow)
+#     found_companies = list(filter(lambda x: x.description is not None, found_companies))
+#
+#     found_companies_desc = [i.description for i in found_companies]
+#
+#     nlp.pipe(found_companies_desc)
+# #
+#     nlp(query)
 
 
 def register_user(user: models.User) -> models.AuthorizationResult:
