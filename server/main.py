@@ -2,6 +2,8 @@ import logging
 import time
 from typing import Callable
 
+from starlette.middleware.cors import CORSMiddleware
+
 import models
 
 logging.basicConfig(format="%(asctime)s [%(name)s] - %(levelname)s: %(message)s", level=logging.INFO)
@@ -16,6 +18,14 @@ from database import data_source
 import service
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 logger = logging.getLogger(__name__)
 
@@ -53,14 +63,12 @@ def login_user(user: models.User):
 @app.post("/companies/search", response_model=models.CompaniesSearchResult)
 def search_companies(search: models.Search):
     """"Контроллер для поиска компаний"""
-
     return service.find_companies(search)
 
 
 @app.post("/items/search", response_model=models.ItemsSearchResult)
 def search_items(search: models.Search):
     """"Контроллер для поиска товаров"""
-
     return service.find_items(search)
 
 

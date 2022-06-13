@@ -1,3 +1,4 @@
+import json
 import logging
 import re
 import models
@@ -15,6 +16,9 @@ industries = ['Металлургия', 'Лесная промышленност
               'Пищевая промышленность', 'Транспортное машиностроение', 'Нефтегазовая промышленность', 'Судостроение', 'Авиационная промышленность', 'Горная промышленность', 'Космическая промышленность', 'Оборонно-промышленный комплекс', 'Ювелирная промышленность']
 
 industries = {idx: el for idx, el in enumerate(industries)}
+
+with open('../data/optimized.json') as json_file:
+    dct = json.load(json_file)
 
 # nlp = spacy.load("ru_core_news_md")
 
