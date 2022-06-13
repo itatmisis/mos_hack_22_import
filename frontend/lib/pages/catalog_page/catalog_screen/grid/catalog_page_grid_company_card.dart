@@ -5,11 +5,11 @@ import 'package:moscow_city_hack_web/widgets/buttons/mch_button.dart';
 import 'package:provider/provider.dart';
 
 
-class CatalogPageGridCard extends StatelessWidget {
+class CatalogPageGridCompanyCard extends StatelessWidget {
 
-  DataItem item;
+  CompanyItem item;
 
-  CatalogPageGridCard({super.key, required this.item});
+  CatalogPageGridCompanyCard({super.key, required this.item});
 
 
   @override
@@ -18,9 +18,8 @@ class CatalogPageGridCard extends StatelessWidget {
         builder: (context, cart, child) {
           return GestureDetector(
             onTap: () {
-              cart.currentPage = 1;
-              cart.activeId = this.item;
-              cart.activeCompany = cart.connection.company.firstWhere((element) => this.item.company_name == element.company_name);
+              cart.currentPage = 6;
+              cart.activeCompany = this.item;
             },
             child: Column(
               children: [
@@ -37,6 +36,7 @@ class CatalogPageGridCard extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(9),
                                 color: Styles.backgroundGray,
                               ),
+                              child: Image.network(item.brand_image),
                             ),
                           ),
                           SizedBox(height: 30,),
@@ -46,7 +46,7 @@ class CatalogPageGridCard extends StatelessWidget {
                               children: [
                                 Align(
                                   alignment: Alignment.topLeft,
-                                  child: Text(item.name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
+                                  child: Text(item.company_name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
                                 ),
                                 Align(
                                   alignment: Alignment.bottomLeft,
@@ -54,10 +54,8 @@ class CatalogPageGridCard extends StatelessWidget {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
-                                      Text(item.company_name, style: TextStyle(fontSize: 14),),
-                                      SizedBox(height: 10,),
-                                      Text(item.inn, style: TextStyle(fontSize: 14, color: Styles.grayTextColor),),
-                                      SizedBox(height: 20,),
+                                      Text(item.description, style: TextStyle(fontSize: 14),),
+                                      SizedBox(height: 30,),
                                       SizedBox(
                                         height: 40,
                                         child: Row(

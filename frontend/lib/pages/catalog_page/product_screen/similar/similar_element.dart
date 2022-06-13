@@ -7,7 +7,8 @@ import 'package:provider/provider.dart';
 
 class SimilarElement extends StatelessWidget {
 
-  SimilarElement({super.key});
+  DataItem item;
+  SimilarElement({super.key, required this.item});
 
 
   @override
@@ -16,6 +17,8 @@ class SimilarElement extends StatelessWidget {
         builder: (context, cart, child) {
           return GestureDetector(
             onTap: () {
+              cart.activeId = item;
+              cart.activeCompany = cart.connection.company.firstWhere((element) => this.item.company_name == element.company_name);
               cart.currentPage = 1;
             },
             child: Padding(
@@ -39,7 +42,7 @@ class SimilarElement extends StatelessWidget {
                         children: [
                           Align(
                             alignment: Alignment.topLeft,
-                            child: Text('Название товара'),
+                            child: Text(item.name),
                           ),
                           Align(
                             alignment: Alignment.bottomLeft,
@@ -47,18 +50,20 @@ class SimilarElement extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                Text('Компания'),
-                                Text('ИНН'),
+                                Text(item.company_name),
+                                Text('ИНН: ' + item.inn),
                                 SizedBox(
                                   height: 40,
                                   child: Row(
                                     children: [
                                       Expanded(
-                                        child: MCHButton(onPressed: () {  }, text: '', color: Styles.cardCallButton,),
+                                        child: MCHButton(onPressed: () { }, text: 'Позвонить', color: Styles.cardCallButton,
+                                            textColor: Color(0xFF4D7560)),
                                       ),
                                       SizedBox(width: 10,),
                                       Expanded(
-                                        child: MCHButton(onPressed: () {  }, text: '', color: Styles.cardSiteButton),
+                                        child: MCHButton(onPressed: () { }, text: 'Сайт', color: Styles.cardSiteButton,
+                                            textColor: Color(0xFF566481)),
                                       )
                                     ],
                                   ),

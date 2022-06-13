@@ -26,11 +26,11 @@ class _CheckBoxListState extends State<CheckBoxList> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        SizedBox(
-          height: 40,
-          child: MCHTextField(),
-        ),
-        SizedBox(height: 10,),
+        // SizedBox(
+        //   height: 40,
+        //   child: MCHTextField(),
+        // ),
+        //SizedBox(height: 10,),
         Expanded(
           child: ListView.builder(
               controller: ScrollController(),
