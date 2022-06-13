@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moscow_city_hack_web/pages/login_page/login_page_model.dart';
+import 'package:moscow_city_hack_web/widgets/adv_widget.dart';
 import 'package:moscow_city_hack_web/widgets/buttons/mch_button.dart';
 import 'package:moscow_city_hack_web/widgets/buttons/mch_text_button.dart';
 import 'package:moscow_city_hack_web/widgets/text_fields/mch_textfield.dart';
@@ -134,12 +135,18 @@ class LoginPageRegisterScreen extends StatelessWidget {
                         children: [
                           Expanded(
                             flex: 1,
-                            child: LoginPageContainer(),
+                            child: LoginPageContainer(
+                              child: Center(
+                                child: Image.asset('assets/adv2.png', height: 150,),
+                              ),
+                            ),
                           ),
                           SizedBox(height: 20,),
                           Expanded(
                             flex: 2,
-                            child: LoginPageContainer(),
+                            child: LoginPageContainer(
+                              child: AdvWidget(),
+                            ),
                           )
                         ],
                       )

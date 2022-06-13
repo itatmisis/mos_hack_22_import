@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:moscow_city_hack_web/model/app_model.dart';
 import 'package:moscow_city_hack_web/model/styles.dart';
 import 'package:moscow_city_hack_web/pages/catalog_page/profile_screen/profile_screen_model.dart';
+import 'package:moscow_city_hack_web/widgets/buttons/mch_text_button.dart';
 import 'package:moscow_city_hack_web/widgets/choose_list.dart';
 import 'package:provider/provider.dart';
 
@@ -52,6 +53,10 @@ class LeftBar extends StatelessWidget {
                             cart.currentPage = 1;
                           }
                         },),
+                        SizedBox(height: 40,),
+                        MCHTextButton(onPressed: () {
+                          Navigator.pushReplacementNamed(context, '/loginPage');
+                        }, text: 'Выход', color: Colors.red,)
                       ],
                     );
                   }

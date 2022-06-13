@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moscow_city_hack_web/model/app_model.dart';
 import 'package:moscow_city_hack_web/model/styles.dart';
-import 'package:moscow_city_hack_web/pages/catalog_page/overview_screen/web_view.dart';
+import 'package:moscow_city_hack_web/widgets/adv_widget.dart';
 import 'package:moscow_city_hack_web/widgets/buttons/mch_button.dart';
 import 'package:moscow_city_hack_web/widgets/dashboard_element_m.dart';
 import 'package:moscow_city_hack_web/widgets/elevated_container/elevated_container.dart';
@@ -101,7 +101,8 @@ class CatalogPageOverviewScreen extends StatelessWidget {
                                                 children: [
                                                   Expanded(
                                                       flex: 2,
-                                                      child: SizedBox()
+                                                      child: Text('Как нейросеть видит наши данные?',
+                                                        style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),),
                                                   ),
                                                   Expanded(
                                                     flex: 1,
@@ -123,7 +124,23 @@ class CatalogPageOverviewScreen extends StatelessWidget {
                       SizedBox(width: 20,),
                       Expanded(
                         flex: 3,
-                        child: ElevatedContainer(),
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 20),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text('Новости',
+                                style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),),
+                              SizedBox(height: 20,),
+                              Expanded(
+                                child: ElevatedContainer(
+                                  child: AdvWidget(),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
                       ),
                     ],
                   ),

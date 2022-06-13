@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:moscow_city_hack_web/pages/catalog_page/profile_screen/add_product/add_box/add_box.dart';
 import 'package:moscow_city_hack_web/pages/catalog_page/profile_screen/add_product/add_photo.dart';
+import 'package:moscow_city_hack_web/pages/catalog_page/profile_screen/profile_screen_model.dart';
 import 'package:moscow_city_hack_web/widgets/buttons/mch_button.dart';
 import 'package:moscow_city_hack_web/widgets/text_fields/mch_multilne_textfield.dart';
 import 'package:moscow_city_hack_web/widgets/text_fields/mch_textfield.dart';
+import 'package:provider/provider.dart';
 
 class ProfileScreenAddProduct extends StatelessWidget {
 
@@ -100,7 +102,13 @@ class ProfileScreenAddProduct extends StatelessWidget {
                         Expanded(
                           child: Padding(
                             padding: EdgeInsets.only(right: 10),
-                            child: MCHButton(onPressed: () {}, text: 'Отправить на модерацию'),
+                            child: Consumer<ProfileScreenModel>(
+                              builder: (context, model, child) {
+                                return MCHButton(onPressed: () {
+                                  model.currentPage = 3;
+                                }, text: 'Отправить на модерацию');
+                              },
+                            )
                           )
                         ),
                         Expanded(

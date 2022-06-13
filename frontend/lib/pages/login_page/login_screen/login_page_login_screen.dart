@@ -96,7 +96,10 @@ class LoginPageLoginScreen extends StatelessWidget {
                         height: 50,
                       ),
                       LoginPageContainer(
-                        height: 120,
+                        height: 80,
+                        child: Center(
+                          child: Image.asset('assets/gos.png'),
+                        ),
                       ),
                     ],
                   ),

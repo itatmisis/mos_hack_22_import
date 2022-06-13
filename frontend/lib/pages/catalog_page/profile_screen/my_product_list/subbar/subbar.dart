@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:moscow_city_hack_web/model/app_model.dart';
-import 'package:moscow_city_hack_web/model/styles.dart';
 import 'package:moscow_city_hack_web/pages/catalog_page/profile_screen/profile_screen_model.dart';
 import 'package:moscow_city_hack_web/widgets/buttons/mch_button.dart';
 import 'package:provider/provider.dart';
