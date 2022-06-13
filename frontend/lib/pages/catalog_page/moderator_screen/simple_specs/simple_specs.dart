@@ -27,7 +27,7 @@ class SimpleSpecs extends StatelessWidget {
                   itemBuilder: (context, i) {
                     return Column(
                       children: [
-                        SimpleSpecsElement(),
+                        SimpleSpecsElement(spec: 'Характеристика', val: 'Количество',),
                         SizedBox(height: 10,),
                       ],
                     );

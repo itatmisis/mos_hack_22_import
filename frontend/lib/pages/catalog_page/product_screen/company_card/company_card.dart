@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:moscow_city_hack_web/model/styles.dart';
+import 'package:moscow_city_hack_web/pages/catalog_page/catalog_page_model.dart';
 import 'package:moscow_city_hack_web/widgets/buttons/mch_button.dart';
 import 'package:moscow_city_hack_web/widgets/elevated_container/elevated_container.dart';
 
 class CompanyCard extends StatelessWidget {
 
-  CompanyCard({super.key});
+  CompanyItem companyItem;
+  CompanyCard({super.key, required this.companyItem});
 
 
   @override
@@ -38,13 +40,13 @@ class CompanyCard extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Название компании длинное', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),),
+                          Text(companyItem.company_name, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),),
                           SizedBox(height: 20,),
-                          Text('ИНН: 0011229993334', style: TextStyle(fontSize: 16),),
+                          Text('ИНН: '+ companyItem.inn, style: TextStyle(fontSize: 16),),
                           SizedBox(height: 10,),
-                          Text('Адрес: ул.  Вавилова, д. 86, к. 12', style: TextStyle(fontSize: 16),),
+                          Text(companyItem.address, style: TextStyle(fontSize: 16),),
                           SizedBox(height: 10,),
-                          Text('Представитель: Иван Иванович', style: TextStyle(fontSize: 16),),
+                          Text(companyItem.phone, style: TextStyle(fontSize: 16),),
                         ],
                       ),
                     ),
@@ -56,11 +58,13 @@ class CompanyCard extends StatelessWidget {
                       child: Row(
                         children: [
                           Expanded(
-                            child: MCHButton(onPressed: () {  }, text: '', color: Styles.cardCallButton,),
+                            child: MCHButton(onPressed: () { }, text: 'Позвонить', color: Styles.cardCallButton,
+                                textColor: Color(0xFF4D7560)),
                           ),
                           SizedBox(width: 10,),
                           Expanded(
-                            child: MCHButton(onPressed: () {  }, text: '', color: Styles.cardSiteButton),
+                            child: MCHButton(onPressed: () { }, text: 'Сайт', color: Styles.cardSiteButton,
+                                textColor: Color(0xFF566481)),
                           )
                         ],
                       ),

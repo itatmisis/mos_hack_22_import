@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:moscow_city_hack_web/model/styles.dart';
+import 'package:moscow_city_hack_web/pages/catalog_page/catalog_page_model.dart';
+import 'package:provider/provider.dart';
 
 class CatalogPageSearch extends StatelessWidget {
 
   double borderRadius = 8;
+  String text = '';
 
   CatalogPageSearch({super.key});
 
@@ -28,20 +31,33 @@ class CatalogPageSearch extends StatelessWidget {
                     borderRadius: BorderRadius.only(topLeft: Radius.circular(borderRadius), bottomLeft: Radius.circular(borderRadius)),
                   ),
                   hintText: 'Искать'
-              )
+              ),
+            onChanged: (s) {
+                text = s;
+            },
           ),
         ),
         Expanded(
           flex: 1,
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(topRight: Radius.circular(borderRadius), bottomRight: Radius.circular(borderRadius)),
-              color: Styles.accentColor,
-            ),
-            child: Center(
-              child: SvgPicture.asset('assets/search.svg'),
-            ),
-          ),
+          child: Consumer<CatalogPageModel>(
+            builder: (context, model, child) {
+              return GestureDetector(
+                onTap: () {
+                  model.currentPage = 0;
+                  model.search(text, false);
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(topRight: Radius.circular(borderRadius), bottomRight: Radius.circular(borderRadius)),
+                    color: Styles.accentColor,
+                  ),
+                  child: Center(
+                    child: SvgPicture.asset('assets/search.svg'),
+                  ),
+                ),
+              );
+            },
+          )
         )
       ],
     );

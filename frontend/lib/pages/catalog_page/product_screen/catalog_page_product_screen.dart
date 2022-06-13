@@ -42,9 +42,9 @@ class CatalogPageProductScreen extends StatelessWidget {
                                       mainAxisSize: MainAxisSize.min,
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
-                                        MCHTextButton(onPressed: () {}, text: 'Комплектующие', height: 16,),
+                                        MCHTextButton(onPressed: () {}, text: cart.activeId.category, height: 16,),
                                         SizedBox(height: 10,),
-                                        Text('Электровелосипед Kugoo Kirin V1 для взрослых', style: TextStyle(fontSize: 30, fontWeight: FontWeight.w700),),
+                                        Text(cart.activeId.name, style: TextStyle(fontSize: 30, fontWeight: FontWeight.w700),),
                                         SizedBox(height: 40,),
                                         SizedBox(
                                           height: 445,
@@ -54,7 +54,7 @@ class CatalogPageProductScreen extends StatelessWidget {
                                               SizedBox(
                                                 height:445,
                                                 width: 500,
-                                                child: PicturesPicker(urls: ['','','','',''],),
+                                                child: PicturesPicker(urls: [''],),
                                               ),
                                               Flexible(
                                                 flex: 4,
@@ -63,7 +63,7 @@ class CatalogPageProductScreen extends StatelessWidget {
                                               SizedBox(
                                                 height: 445,
                                                 width: 350,
-                                                child: CompanyCard(),
+                                                child: CompanyCard(companyItem: cart.activeCompany,),
                                               )
                                             ],
                                           ),
