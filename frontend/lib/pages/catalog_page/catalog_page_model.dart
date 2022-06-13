@@ -140,12 +140,12 @@ class CatalogPageModel extends ChangeNotifier {
 
   Future<SearchConnection> getFromServer(String text, bool is_moscow, int category) async {
     var responseItems = await post(
-        Uri.parse('http://moshack.itatmisis.ru/items/search'),
+        Uri.parse('http://moshack.itatmisis.ru:8000/items/search'),
         headers: {'Content-Type': 'application/json'},
         body: json.encode({'text':text, 'is_moscow': is_moscow, 'category': category}));
 
     var responseCompanies = await post(
-        Uri.parse('http://moshack.itatmisis.ru/companies/search'),
+        Uri.parse('http://moshack.itatmisis.ru:8000/companies/search'),
         headers: {'Content-Type': 'application/json'},
         body: json.encode({'text':text, 'is_moscow': is_moscow, 'category': category}));
 
