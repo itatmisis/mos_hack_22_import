@@ -54,7 +54,7 @@ class CatalogPageGridCompanyCard extends StatelessWidget {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
-                                      Text(item.description, style: TextStyle(fontSize: 14),),
+                                      Text(item.description.length > 100? item.description.substring(0, 100) + '...' : item.description, style: TextStyle(fontSize: 14),),
                                       SizedBox(height: 30,),
                                       SizedBox(
                                         height: 40,

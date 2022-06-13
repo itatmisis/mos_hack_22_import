@@ -176,7 +176,7 @@ class CatalogPageModel extends ChangeNotifier {
             emp_num: encodedCompanies['companies'][index]['emp_num']?? '',
             oficcial_name: encodedCompanies['companies'][index]['official_name']?? '',
             company_name: encodedCompanies['companies'][index]['company_name']?? '',
-            description: (encodedCompanies['companies'][index]['description']?? '').toString().length > 70? (encodedCompanies['companies'][index]['description']?? '').toString().substring(0, 70) + '...' : (encodedCompanies['companies'][index]['description']?? ''),
+            description: encodedCompanies['companies'][index]['description']?? '',
             address: encodedCompanies['companies'][index]['address']?? '',
             phone: encodedCompanies['companies'][index]['phone']?? '',
             email: encodedCompanies['companies'][index]['email']?? '',
