@@ -7,7 +7,7 @@ from typing import List
 
 class SQLighter:
     def __init__(self, database):
-        self.connection = sqlite3.connect(database)
+        self.connection = sqlite3.connect(database, check_same_thread=False)
         self.cursor = self.connection.cursor()
 
     def execute(self, sql_query, args=None):
@@ -46,7 +46,7 @@ class SQLighter:
             f"INSERT INTO users (full_name, password, inn, company_name, country, company_type, email, position) VALUES('{full_name}', '{password}', {inn}, '{company_name}', '{country}', '{company_type}', '{email}', '{position}')")
         self.connection.commit()
 
-    def search_item(self, industry: str = "", moscow: bool = False, product_name: str = ""):
+    def search_item(self, industry: str = "", moscow: bool = False, product_name: str = "") -> List[models.Item]:
         """
         Search item in database
         :param industry: str
@@ -60,9 +60,9 @@ class SQLighter:
         else:
             a = self.select(f"SELECT * FROM full_products WHERE lower(industry) like '%{industry.lower()}%' AND Productname like '%{product_name.lower()}%'")
 
-        return a
+        return result_to_items(a)
 
-    def search_company(self, industry: str = "", moscow: bool = False, company_name: str = ""):
+    def search_company(self, industry: str = "", moscow: bool = False, company_name: str = "") -> List[models.Company]:
         """
         Search company in database
         :param industry: str
@@ -76,7 +76,7 @@ class SQLighter:
         else:
             a = self.select(f"SELECT * FROM orgs where lower(industry) like '%{industry.lower()}%' AND name like '%{company_name.lower()}%'")
 
-        return a
+        return result_to_companies(a)
 
     # def search_company_text(self, moscow, query):
     #     """
@@ -105,15 +105,43 @@ class SQLighter:
 
 def result_to_companies(answer: list) -> List[models.Company]:
     companies = []
-    for r in companies:
-        pass
+    for r in answer:
+        params = {
+            'company_name': r[0],
+            'description': r[1],
+            'brand_image': r[3],
+            'industry': r[4],
+            'category': r[5],
+            'subcategory': r[6],
+            'inn': r[7],
+            'ogrn': r[8],
+            'kpp': r[9],
+            'address': r[10],
+            'phone': r[11],
+            'email': r[12],
+            'website': r[13],
+            'official_name': r[17],
+            'id': r[20],
+            'is_moscow': r[10].lower().__contains__('москв') if (r[10] is not None) else False
+        }
+        companies.append(models.Company(**params))
     return companies
 
 
 def result_to_items(answer: list) -> List[models.Item]:
     items = []
-    for r in items:
-        pass
+    for r in answer:
+        params = {
+            'company_name': r[0],
+            'name': r[4],
+            'industry': r[8],
+            'category': r[9],
+            'subcategory': r[10],
+            'address': r[11],
+            'id': r[12],
+            'is_moscow': r[11].lower().__contains__('москв') if (r[10] is not None) else False
+        }
+        items.append(models.Item(**params))
     return items
 
 

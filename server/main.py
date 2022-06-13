@@ -91,5 +91,6 @@ app.include_router(router)
 
 if __name__ == "__main__":
     print(len(data_source.search_company(industry="Машиностроение")))
+    print(data_source.search_item(industry="Машиностроение", moscow=True)[0])
     print(data_source.search_company(industry="Машиностроение", moscow=True)[0])
     uvicorn.run(app, host="0.0.0.0", port=8000)

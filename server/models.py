@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from datetime import datetime
-from typing import List
+from typing import List, Optional
 
 from pydantic import BaseModel
 
@@ -25,32 +25,33 @@ class Search(BaseModel):
 class Item(BaseModel):
     id: int
     name: str
-    address: str
-    industry: str
-    category: str
-    subcategory: str
-    is_moscow: bool
+    company_name: Optional[str]
+    address: Optional[str]
+    industry: Optional[str]
+    category: Optional[str]
+    subcategory: Optional[str]
+    is_moscow: Optional[bool]
 
 
 class Company(BaseModel):
     id: int
-    company_name: str
-    description: str
-    address: str
-    phone: str
-    email: str
-    brand_image: str
-    industry: str
-    category: str
-    subcategory: str
-    inn: int
-    ogrn: int
-    kpp: int
-    website: str
-    emp_num: int
-    official_name: int
-    registration_date: str
-    is_moscow: bool
+    company_name: Optional[str]
+    description: Optional[str]
+    address: Optional[str]
+    phone: Optional[str]
+    email: Optional[str]
+    brand_image: Optional[str]
+    industry: Optional[str]
+    category: Optional[str]
+    subcategory: Optional[str]
+    inn: Optional[str]
+    ogrn: Optional[str]
+    kpp: Optional[str]
+    website: Optional[str]
+    emp_num: Optional[str]
+    official_name: Optional[str]
+    registration_date: Optional[str]
+    is_moscow: Optional[bool]
 
 
 class CompaniesSearchResult(BaseModel):
