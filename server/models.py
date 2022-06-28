@@ -20,17 +20,6 @@ class Search(BaseModel):
     category: int = -1
 
 
-class Item(BaseModel):
-    id: int
-    name: str
-    company_name: Optional[str]
-    address: Optional[str]
-    industry: Optional[str]
-    category: Optional[str]
-    subcategory: Optional[str]
-    is_moscow: Optional[bool]
-
-
 class Company(BaseModel):
     id: int
     company_name: Optional[str]
@@ -49,6 +38,17 @@ class Company(BaseModel):
     emp_num: Optional[str]
     official_name: Optional[str]
     registration_date: Optional[str]
+    is_moscow: Optional[bool]
+
+
+class Item(BaseModel):
+    id: int
+    name: str
+    company: Optional[Company]
+    address: Optional[str]
+    industry: Optional[str]
+    category: Optional[str]
+    subcategory: Optional[str]
     is_moscow: Optional[bool]
 
 

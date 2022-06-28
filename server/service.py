@@ -33,12 +33,12 @@ def find_items(search: models.Search) -> models.ItemsSearchResult:
 
     industry = industries[search.category] if search.category > 0 else ""
 
-    found_items = data_source.search_item(industry, moscow=search.is_moscow)
+    found_items = data_source.search_items(industry, moscow=search.is_moscow)
     found_items_names = [_clear_string(i.name) for i in found_items]
 
     choices_dict = {idx: el for idx, el in enumerate(found_items_names)}
     search_result = process.extract(query, choices_dict, limit=50)
-    logger.info(search_result)
+    # logger.info(search_result)
     indexes = [i[-1] for i in search_result]
 
     found_items = list(map(found_items.__getitem__, indexes))
@@ -55,7 +55,7 @@ def find_companies(search: models.Search) -> models.CompaniesSearchResult:
 
     industry = industries[search.category] if search.category > 0 else ""
 
-    found_companies = data_source.search_company(industry, moscow=search.is_moscow)
+    found_companies = data_source.search_companies(industry, moscow=search.is_moscow)
     found_companies = list(filter(lambda x: x.description is not None, found_companies))
     found_companies_desc = [i.description for i in found_companies]
 

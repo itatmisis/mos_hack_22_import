@@ -6,6 +6,7 @@ from typing import List
 
 
 class SQLighter:
+
     def __init__(self, database):
         self.connection = sqlite3.connect(database, check_same_thread=False)
         self.cursor = self.connection.cursor()
@@ -46,14 +47,8 @@ class SQLighter:
             f"INSERT INTO users (full_name, password, inn, company_name, country, company_type, email, position) VALUES('{full_name}', '{password}', {inn}, '{company_name}', '{country}', '{company_type}', '{email}', '{position}')")
         self.connection.commit()
 
-    def search_item(self, industry: str = "", moscow: bool = False, product_name: str = "") -> List[models.Item]:
-        """
-        Search item in database
-        :param industry: str
-        :param moscow: str
-        :param query: str
-        :return: list
-        """
+    def search_items(self, industry: str = "", moscow: bool = False, product_name: str = "") -> List[models.Item]:
+
         if moscow:
             a = self.select(
                 f"SELECT * FROM full_products WHERE lower(industry) like '%{industry.lower()}%' AND lower(Productname) like '%{(product_name.lower())}%' AND lower(adress) like '%москва%'")
@@ -62,14 +57,8 @@ class SQLighter:
 
         return result_to_items(a)
 
-    def search_company(self, industry: str = "", moscow: bool = False, company_name: str = "") -> List[models.Company]:
-        """
-        Search company in database
-        :param industry: str
-        :param moscow: str
-        :param query: str
-        :return: list
-        """
+    def search_companies(self, industry: str = "", moscow: bool = False, company_name: str = "") -> List[models.Company]:
+
         if moscow:
             a = self.select(
                 f"SELECT * FROM orgs where lower(industry) like '%{industry.lower()}%' AND name like '%{company_name.lower()}%' and lower(adress) like '%москва%'")
@@ -107,6 +96,9 @@ class SQLighter:
     #     return a
 
 
+data_source = SQLighter('../data/hack.db')
+
+
 def result_to_companies(answer: list) -> List[models.Company]:
     companies = []
     for r in answer:
@@ -135,15 +127,17 @@ def result_to_companies(answer: list) -> List[models.Company]:
 def result_to_items(answer: list) -> List[models.Item]:
     items = []
     for r in answer:
+        is_moscow = r[11].lower().__contains__('москв') if (r[10] is not None) else False
+        companies = data_source.search_companies_by_inn(r[2])
         params = {
-            'company_name': r[0],
+            'company': companies[0] if len(companies) > 0 else None,
             'name': r[4],
             'industry': r[8],
             'category': r[9],
             'subcategory': r[10],
             'address': r[11],
             'id': r[12],
-            'is_moscow': r[11].lower().__contains__('москв') if (r[10] is not None) else False
+            'is_moscow': is_moscow
         }
         items.append(models.Item(**params))
     return items
@@ -164,6 +158,3 @@ def initialize_database_from_csv():
     df['industry'] = df['industry'].str.lower()
 
     df.to_sql('orgs', con, if_exists='replace', index=False)
-
-
-data_source = SQLighter('../data/hack.db')

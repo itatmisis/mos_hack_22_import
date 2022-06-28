@@ -3,6 +3,7 @@ import time
 from typing import Callable
 
 from starlette.middleware.cors import CORSMiddleware
+from starlette.staticfiles import StaticFiles
 
 import models
 
@@ -26,6 +27,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+app.mount("/web", StaticFiles(directory='web'), name="static")
+# app.mount("/", StaticFiles(directory="web", html=True), name="web")
 
 logger = logging.getLogger(__name__)
 
@@ -98,7 +102,8 @@ def ping():
 app.include_router(router)
 
 if __name__ == "__main__":
-    print(len(data_source.search_company(industry="Машиностроение")))
-    print(data_source.search_item(industry="Машиностроение", moscow=True)[0])
-    print(data_source.search_company(industry="Машиностроение", moscow=True)[0])
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    # print(len(data_source.search_company(industry="Машиностроение")))
+    # print(data_source.search_items(industry="Машиностроение", moscow=True)[0])
+    print(data_source.search_items(industry="Машиностроение", moscow=True)[0])
+    # print(data_source.search_companies(industry="Машиностроение", moscow=True)[0])
+    uvicorn.run(app, host="0.0.0.0", port=80)
