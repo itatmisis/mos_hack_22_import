@@ -58,4 +58,4 @@ class CompaniesSearchResult(BaseModel):
 
 class ItemsSearchResult(BaseModel):
     items: List[Item] = list()
-    companies_names: List[str] = list()
+    companies: List[Company] = list()

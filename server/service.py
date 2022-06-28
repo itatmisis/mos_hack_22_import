@@ -44,7 +44,7 @@ def find_items(search: models.Search) -> models.ItemsSearchResult:
     found_items = list(map(found_items.__getitem__, indexes))
     result.items = found_items
 
-    result.companies_names = [i.company_name for i in found_items]
+    result.companies = [i.company for i in found_items]
 
     return result
 
