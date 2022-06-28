@@ -1,10 +1,12 @@
 import logging
+
 logging.basicConfig(format="%(asctime)s [%(name)s] - %(levelname)s: %(message)s", level=logging.INFO)
 
 from starlette.middleware.cors import CORSMiddleware
 from starlette.staticfiles import StaticFiles
 import models
 import uvicorn
+from starlette.responses import FileResponse
 from fastapi import APIRouter, FastAPI, Request, Response
 from database import data_source
 import service
@@ -45,6 +47,11 @@ def search_companies(search: models.Search):
 def search_items(search: models.Search):
     """"Контроллер для поиска товаров"""
     return service.find_items(search)
+
+
+@app.get("/")
+def read_index():
+    return FileResponse('web/index.html')
 
 
 # @app.post("/items/add", response_model=models.SearchResult)
