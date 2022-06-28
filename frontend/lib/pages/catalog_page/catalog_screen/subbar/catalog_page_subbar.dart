@@ -40,6 +40,22 @@ class CatalogPageSubbar extends StatelessWidget {
                               ],
                             ),
                           ),
+                          Container(
+                            width: 250,
+                            child: Row(
+                              children: [
+                                Switch(
+                                  value: cart.isMoscow,
+                                  onChanged: (value) {
+                                    cart.isMoscow = !cart.isMoscow;
+                                  },
+                                  activeTrackColor: Styles.accentColor,
+                                  activeColor: Styles.accentColor,
+                                ),
+                                Text('Только Москва', style: TextStyle(fontSize: 16),)
+                              ],
+                            ),
+                          ),
                           Expanded(
                             flex: 5,
                             child: SizedBox(),

@@ -25,7 +25,7 @@ class ModeratorCard extends StatelessWidget {
             alignment: Alignment.topCenter,
             child: Padding(
               padding: EdgeInsets.all(15),
-              child: MCHMutlilineTextField(),
+              child: MCHMutlilineTextField(hint: 'Опишите правки',),
             )
           ),
           Align(

@@ -6,6 +6,7 @@ import 'package:moscow_city_hack_web/widgets/buttons/mch_button.dart';
 import 'package:moscow_city_hack_web/widgets/dashboard_element_m.dart';
 import 'package:moscow_city_hack_web/widgets/elevated_container/elevated_container.dart';
 import 'package:provider/provider.dart';
+import 'dart:html' as html;
 
 class CatalogPageOverviewScreen extends StatelessWidget {
 
@@ -106,7 +107,9 @@ class CatalogPageOverviewScreen extends StatelessWidget {
                                                   ),
                                                   Expanded(
                                                     flex: 1,
-                                                    child: MCHButton(onPressed: () {},
+                                                    child: MCHButton(onPressed: () {
+                                                      html.window.open('graph.html', 'Модель');
+                                                    },
                                                       text: 'Посмотреть', color: Styles.cardCallButton, textColor: Styles.greenTextColor,),
                                                   )
                                                 ],
